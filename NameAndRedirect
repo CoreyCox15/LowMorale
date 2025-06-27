@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Surname</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Please enter your surname to continue</h2>
+    <form id="surnameForm" onsubmit="return submitSurname()">
+        <input type="text" id="surname" placeholder="Surname" required>
+        <button type="submit">Continue</button>
+    </form>
+
+    <script>
+        function submitSurname() {
+            const surname = document.getElementById("surname").value.trim();
+            if (!surname) return false;
+
+            // Google Form endpoint with field ID
+            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSegkWVTltxkuHeM0_n_COfLo-GZmCa5Mpawhfiiw_ey0_xq8Q/formResponse";
+            const fieldID = "entry.1880223224";
+
+            // Submit the surname silently
+            fetch(`${formUrl}?${fieldID}=${encodeURIComponent(surname)}`, {
+                method: "GET",
+                mode: "no-cors"
+            });
+
+            // Redirect to Rick Astley
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            return false;
+        }
+    </script>
+</body>
+</html>
